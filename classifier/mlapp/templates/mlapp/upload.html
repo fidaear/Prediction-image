@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cat vs Dog Classifier</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; margin-top: 50px; }
+        img { max-width: 300px; margin-top: 20px; }
+        .result { font-size: 20px; font-weight: bold; margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <h1>Upload an Image to Simulate Prediction</h1>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Predict</button>
+    </form>
+
+    {% if image_url %}
+        <h2 class="result">Prediction: {{ result }}</h2>
+        <h3 class="result">Simulated Accuracy: {{ accuracy }}%</h3>
+        <img src="{{ image_url }}" alt="Uploaded Image">
+    {% endif %}
+</body>
+</html>
